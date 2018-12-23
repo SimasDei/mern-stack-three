@@ -1,0 +1,11 @@
+{
+  "prettier.endOfLine": "lf",
+  "prettier.eslintIntegration": true,
+  "files.eol": "\n",
+  "git.ignoreLimitWarning": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "files.exclude": {
+    "**/.git": false
+  }
+}
