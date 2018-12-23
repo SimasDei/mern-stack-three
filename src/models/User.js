@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 //TODO: Add unique email require and email validation
 const schema = new mongoose.Schema(
   {
@@ -27,7 +28,7 @@ schema.methods.generateJWT = function generateJWT() {
     {
       email: this.email
     },
-    'secretkey'
+    process.env.JWT_SECRET
   );
 };
 

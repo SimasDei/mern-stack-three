@@ -2,14 +2,18 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import dontenv from 'dotenv';
+import Promise from 'bluebird';
 
 import auth from './routes/auth';
 
+dontenv.config();
 const app = express();
 app.use(bodyParser.json());
+mongoose.Promise = Promise;
 mongoose
   .connect(
-    'mongodb+srv://Simas:02894145@baltic-react-mongodb-one-l0d3u.mongodb.net/bookaroo?retryWrites=true',
+    process.env.MONGODB,
     { useNewUrlParser: true }
   )
   .then(console.log('Connection to DB established Captain! o/'));
@@ -20,4 +24,4 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(5000, () => console.log('Runin on 5000 Captain! o/'));
+app.listen(5000, () => console.log("Runin' on 5000 Captain! o/"));

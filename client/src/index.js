@@ -9,11 +9,17 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './rootReducer';
+import { userLoggedIn } from './actions/auth';
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+if (localStorage.bookarooJWT) {
+  const user = { token: localStorage.bookarooJWT };
+  store.dispatch(userLoggedIn(user));
+}
 
 ReactDOM.render(
   <BrowserRouter>
