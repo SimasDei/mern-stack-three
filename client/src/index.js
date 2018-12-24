@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './rootReducer';
@@ -24,7 +24,7 @@ if (localStorage.bookarooJWT) {
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <Route component={App} />
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')
