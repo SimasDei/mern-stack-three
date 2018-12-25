@@ -26,6 +26,20 @@ export function sendConfirmationEmail(user) {
       ${user.generateConfirmationUrl()}
     `
   };
+  transport.sendMail(email);
+}
 
+export function sendResetPasswordEmail(user) {
+  const transport = setup();
+  const email = {
+    from,
+    to: user.email,
+    subject: 'Bookaroo Password Reset',
+    text: `
+      Click this link to reset Your password
+
+      ${user.generateResetPasswordLink()}
+    `
+  };
   transport.sendMail(email);
 }

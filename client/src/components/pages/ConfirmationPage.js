@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Message, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { confirm } from '../../actions/auth';
 
-export class ConfirmationPage extends Component {
+class ConfirmationPage extends Component {
   state = {
     loading: true,
     success: false
