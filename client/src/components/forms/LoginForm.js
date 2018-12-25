@@ -40,9 +40,9 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, loading } = this.state;
     return (
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onSubmit} loading={loading}>
         {errors.global && (
           <Message negative>
             <Message.Header>Something Went Wrong</Message.Header>
