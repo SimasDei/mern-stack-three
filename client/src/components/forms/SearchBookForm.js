@@ -56,7 +56,7 @@ class SearchBookForm extends Component {
           onSearchChange={this.onSearchChange}
           options={this.state.options}
           loading={this.state.loading}
-          onCHange={this.onChange}
+          onChange={this.onChange}
         />
       </Form>
     );
