@@ -7,5 +7,8 @@
   "editor.wordWrap": "on",
   "files.exclude": {
     "**/.git": false
-  }
+  },
+  "cSpell.words": [
+    "goodreads"
+  ]
 }
