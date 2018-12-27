@@ -60,56 +60,54 @@ class BookForm extends Component {
     return (
       <Segment>
         <Form onSubmit={this.onSubmit} loading={loading}>
-          <Grid>
-            <Grid column={2}>
-              <Grid.Row>
-                <Grid.column>
-                  <Form.Field error={!!errors.title}>
-                    <label htmlFor="title">Title</label>
-                    <input
-                      type="text"
-                      id="title"
-                      name="title"
-                      placeholder="Book Title"
-                      value={data.title}
-                      onChange={this.onChange}
-                    />
-                    {errors.title && <InlineError text={errors.title} />}
-                  </Form.Field>
-
-                  <Form.Field error={!!errors.title}>
-                    <label htmlFor="authors">Authors</label>
-                    <input
-                      type="text"
-                      id="authors"
-                      name="authors"
-                      placeholder="Book authors"
-                      value={data.authors}
-                      onChange={this.onChange}
-                    />
-                    {errors.authors && <InlineError text={errors.authors} />}
-                  </Form.Field>
-
-                  <Form.Field error={!!errors.pages}>
-                    <label htmlFor="pages">Number of Pages</label>
-                    <input
-                      type="number"
-                      id="pages"
-                      name="pages"
-                      value={data.pages}
-                      onChange={this.onChangeNumber}
-                    />
-                    {errors.pages && <InlineError text={errors.pages} />}
-                  </Form.Field>
-                </Grid.column>
-              </Grid.Row>
+          <Grid columns={2} stackable>
+            <Grid.Row>
               <Grid.Column>
-                <Image size="small" src={data.cover} />
+                <Form.Field error={!!errors.title}>
+                  <label htmlFor="title">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Book Title"
+                    value={data.title}
+                    onChange={this.onChange}
+                  />
+                  {errors.title && <InlineError text={errors.title} />}
+                </Form.Field>
+
+                <Form.Field error={!!errors.title}>
+                  <label htmlFor="authors">Authors</label>
+                  <input
+                    type="text"
+                    id="authors"
+                    name="authors"
+                    placeholder="Book authors"
+                    value={data.authors}
+                    onChange={this.onChange}
+                  />
+                  {errors.authors && <InlineError text={errors.authors} />}
+                </Form.Field>
+
+                <Form.Field error={!!errors.pages}>
+                  <label htmlFor="pages">Number of Pages</label>
+                  <input
+                    type="number"
+                    id="pages"
+                    name="pages"
+                    value={data.pages}
+                    onChange={this.onChangeNumber}
+                  />
+                  {errors.pages && <InlineError text={errors.pages} />}
+                </Form.Field>
               </Grid.Column>
-              <Grid.Row>
-                <Button primary>Save</Button>
-              </Grid.Row>
-            </Grid>
+            </Grid.Row>
+            <Grid.Column>
+              <Image size="small" src={data.cover} />
+            </Grid.Column>
+            <Grid.Row>
+              <Button primary>Save</Button>
+            </Grid.Row>
           </Grid>
         </Form>
       </Segment>
