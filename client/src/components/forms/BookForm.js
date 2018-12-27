@@ -13,9 +13,23 @@ class BookForm extends Component {
       pages: this.props.book.pages
     },
     covers: this.props.book.covers,
+    index: 0,
     loading: false,
     errors: {}
   };
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      data: {
+        goodreadsId: props.book.goodreadsId,
+        title: props.book.title,
+        authors: props.book.authors,
+        cover: props.book.covers[0],
+        pages: props.book.pages
+      },
+      covers: props.book.covers
+    });
+  }
 
   onChange = e =>
     this.setState({
@@ -45,6 +59,15 @@ class BookForm extends Component {
           this.setState({ errors: err.response.data.errors, loading: false })
         );
     }
+  };
+
+  changeCover = () => {
+    const { index, covers } = this.state;
+    const newIndex = index + 1 >= covers.length ? 0 : index + 1;
+    this.setState({
+      index: newIndex,
+      data: { ...this.state.data, cover: covers[newIndex] }
+    });
   };
 
   validate = data => {
@@ -104,6 +127,11 @@ class BookForm extends Component {
             </Grid.Row>
             <Grid.Column>
               <Image size="small" src={data.cover} />
+              {this.state.covers.length > 1 && (
+                <a role="button" tabIndex={0} onClick={this.changeCover}>
+                  Next Cover
+                </a>
+              )}
             </Grid.Column>
             <Grid.Row>
               <Button primary>Save</Button>
