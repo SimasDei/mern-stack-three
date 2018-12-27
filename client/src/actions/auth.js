@@ -1,5 +1,6 @@
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from '../types';
 import api from '../api';
+import setAuthenticationHeader from '../utils/setAuthenticationHeader';
 
 export const userLoggedIn = user => ({
   type: USER_LOGGED_IN,
@@ -13,11 +14,13 @@ export const userLoggedOut = () => ({
 export const login = credentials => dispatch =>
   api.user.login(credentials).then(user => {
     localStorage.bookarooJWT = user.token;
+    setAuthenticationHeader(user.token);
     dispatch(userLoggedIn(user));
   });
 
 export const logout = () => dispatch => {
   localStorage.removeItem('bookarooJWT');
+  setAuthenticationHeader();
   dispatch(userLoggedOut());
 };
 

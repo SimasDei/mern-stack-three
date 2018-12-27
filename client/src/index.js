@@ -11,6 +11,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './rootReducer';
 import { userLoggedIn } from './actions/auth';
+import setAuthorizationHeader from './utils/setAuthenticationHeader';
 
 const store = createStore(
   rootReducer,
@@ -24,6 +25,7 @@ if (localStorage.bookarooJWT) {
     email: payload.email,
     confirmed: payload.confirmed
   };
+  setAuthorizationHeader(localStorage.bookarooJWT);
   store.dispatch(userLoggedIn(user));
 }
 

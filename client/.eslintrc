@@ -16,6 +16,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "linebreak-style": [0, "windows"]
+    "linebreak-style": [0, "windows"],
+    "jsx-a11y/anchor-is-valid": ["ignore"]
   }
 }

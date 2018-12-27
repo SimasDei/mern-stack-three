@@ -126,11 +126,13 @@ class BookForm extends Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Column>
-              <Image size="small" src={data.cover} />
+              <Image size="small" src={data.cover} id="image" />
               {this.state.covers.length > 1 && (
+                /*eslint-disable */
                 <a role="button" tabIndex={0} onClick={this.changeCover}>
                   Next Cover
                 </a>
+                /* eslint-enable */
               )}
             </Grid.Column>
             <Grid.Row>
