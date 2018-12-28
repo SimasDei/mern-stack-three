@@ -16,6 +16,8 @@ export default {
     resetPassword: data => axios.post('/api/auth/reset_password', { data })
   },
   books: {
-    fetchAll: () => axios.get('/api/books').then(res => res.data.books)
+    fetchAll: () => axios.get('/api/books').then(res => res.data.books),
+    create: book =>
+      axios.post('/api/books', { book }).then(res => res.data.book)
   }
 };

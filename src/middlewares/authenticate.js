@@ -12,8 +12,8 @@ export default (req, res, next) => {
       if (err) {
         res.status(401).json({ errors: { global: 'Invalid Token' } });
       } else {
-        User.findOne({ email: decoded.email }).then(uer => {
-          req.currentUser = decoded.email;
+        User.findOne({ email: decoded.email }).then(user => {
+          req.currentUser = user;
           next();
         });
       }

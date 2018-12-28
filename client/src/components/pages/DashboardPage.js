@@ -18,7 +18,7 @@ class DashboardPage extends Component {
       <div>
         {!isConfirmed && <ConfirmEmailMessage />}
 
-        {books.length === 0 && <AddBookCall />}
+        {books.length === 0 ? <AddBookCall /> : <p>Here is Your Library!</p>}
       </div>
     );
   }
