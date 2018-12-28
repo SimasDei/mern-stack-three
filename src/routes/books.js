@@ -21,8 +21,7 @@ router.get('/search', (req, res) => {
               goodreadsId: work.best_book[0].id[0]._,
               title: work.best_book[0].title[0],
               authors: work.best_book[0].author[0].name[0],
-              covers: [work.best_book[0].image_url[0]],
-              pages: Math.floor(Math.random() * 500) + 1
+              covers: [work.best_book[0].image_url[0]]
             })
           )
         })
@@ -30,30 +29,23 @@ router.get('/search', (req, res) => {
     );
 });
 
-// res.json({
-//   books: [
-//     {
-//       goodreadsId: 1,
-//       title: '1984',
-//       authors: 'Orwell',
-//       covers: [
-//         'https://images.gr-assets.com/books/1532714506l/40961427.jpg',
-//         'https://images.gr-assets.com/books/1327144697l/3744438.jpg'
-//       ],
-//       pages: 198
-//     },
-//     {
-//       goodreadsId: 2,
-//       title: 'Three Men in a Boat',
-//       authors: 'Jerome K. Jerome',
-//       covers: [
-//         'https://images.gr-assets.com/books/1392791656l/4921.jpg',
-//         'https://images.gr-assets.com/books/1312036878l/627830.jpg'
-//       ],
-//       pages: 256
-//     }
-//   ]
-// });
-// });
+router.get('/fetchPages', (req, res) => {
+  const goodreadsId = req.query.goodreadsId;
+  request
+    .get(
+      `https://www.goodreads.com/book/show.xml?key=${
+        process.env.GOODREADS_KEY
+      }&id=${goodreadsId}`
+    )
+    .then(result =>
+      parseString(result, (err, goodreadsResult) => {
+        const numPages = goodreadsResult.GoodreadsResponse.book[0].num_pages[0];
+        const pages = numPages ? parseInt(numPages, 10) : 0;
+        res.json({
+          pages
+        });
+      })
+    );
+});
 
 export default router;
